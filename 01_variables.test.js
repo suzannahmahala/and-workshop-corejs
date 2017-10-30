@@ -1,17 +1,14 @@
 test('VAR', () => {
-  var x = 5;
   var x = 6;
-  expect(x).toBe(5);
+  expect(x).toBe(6);
 });
 
 test('LET and VAR', () => {
-  var x = 6;
   let x = 5;
   expect(x).toBe(5);
 });
 
 test('LET', () => {
-  let x = 5;
   let x = 6;
   expect(x).toBe(6);
 });
@@ -20,24 +17,24 @@ test('LET', () => {
   let x = 5;
 
   function foo() {
-    let x = 20;
+    let y = 20;
 
     return x;
   }
 
-  expect(x).toBe(20);
+  expect(x).toBe(5);
 });
 
 test('CONST - scalar values', () => {
-  let x = 5;
+  const y = 5;
   x = 'foo';
-  expect(x).toBe(5);
+  expect(y).toBe(5);
 });
 
 test('CONST - assignment', () => {
-  const x = 5;
+  const z = 5;
   x = 5
-  expect(x).toBe(5);
+  expect(z).toBe(5);
 });
 
 test('CONST - objects', () => {
@@ -46,5 +43,5 @@ test('CONST - objects', () => {
     "age": 42
   };
 
-  expect(person.lastname).toBe('torvalds');
+  expect(person.lastname).toBe(undefined);
 });
