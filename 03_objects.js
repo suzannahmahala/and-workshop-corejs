@@ -44,18 +44,18 @@ console.log(numPrimitive.toString()); // "5"
 
 //## OBJECT PROPERTY ACCESS
 
-/* In objects, property names are always strings. 
-If you use any other value besides a string (primitive) as the property, it will first be converted to a string. 
+/* In objects, property names are always strings.
+If you use any other value besides a string (primitive) as the property, it will first be converted to a string.
 
-This even includes numbers, which are commonly used as array indexes, so be careful not to confuse the use of numbers between objects and arrays. 
+This even includes numbers, which are commonly used as array indexes, so be careful not to confuse the use of numbers between objects and arrays.
 
-To access the value at the location a in myObject, we need to use either the . operator or the [ ] operator. 
+To access the value at the location a in myObject, we need to use either the . operator or the [ ] operator.
 
-The .a syntax is usually referred to as "property" access, whereas the ["a"] syntax is usually referred to as "key" access. 
+The .a syntax is usually referred to as "property" access, whereas the ["a"] syntax is usually referred to as "key" access.
 
 In reality, they both access the same location, and will pull out the same value, 2, so the terms can be used interchangeably. We will use the most common term, "property access" from here on.
 
-The main difference between the two syntaxes is that the . operator requires an Identifier compatible property name after it, whereas the [".."] syntax can take basically any UTF-8/unicode compatible string as the name for the property. 
+The main difference between the two syntaxes is that the . operator requires an Identifier compatible property name after it, whereas the [".."] syntax can take basically any UTF-8/unicode compatible string as the name for the property.
 To reference a property of the name "Super-Fun!", for instance, you would have to use the ["Super-Fun!"] access syntax, as Super-Fun! is not a valid Identifier property name.
 
 With [..] you can have computed property name
@@ -71,14 +71,14 @@ myObject['a']; // 2
 
 /*
 //## Property vs. Method
-Some developers like to make a distinction when talking about a property access on an object, if the value being accessed happens to be a function. 
-Because it's tempting to think of the function as belonging to the object, 
+Some developers like to make a distinction when talking about a property access on an object, if the value being accessed happens to be a function.
+Because it's tempting to think of the function as belonging to the object,
 and in other languages, functions which belong to objects (aka, "classes") are referred to as "methods", it's not uncommon to hear, "method access" as opposed to "property access".
 The specification makes this same distinction, interestingly.
 Technically, functions never "belong" to objects, so saying that a function that just happens to be accessed on an object reference is automatically a "method" seems a bit of a stretch of semantics.
-It is true that some functions have this references in them, and that sometimes these this references refer to the object reference at the call-site. 
+It is true that some functions have this references in them, and that sometimes these this references refer to the object reference at the call-site.
 But this usage really does not make that function any more a "method" than any other function, as this is dynamically bound at run-time, at the call-site, and thus its relationship to the object is indirect, at best.
-Every time you access a property on an object, that is a property access, regardless of the type of value you get back. If you happen to get a function from that property access, it's not magically a "method" at that point. 
+Every time you access a property on an object, that is a property access, regardless of the type of value you get back. If you happen to get a function from that property access, it's not magically a "method" at that point.
 There's nothing special (outside of possible implicit this binding as explained earlier) about a function that comes from a property access.
 
 
