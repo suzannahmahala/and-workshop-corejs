@@ -1,20 +1,26 @@
 
 /*
-    
+
     Task 1) Write a function that capitalises a string. To do this, add a prototype function to the base String object.
 
       Note: You shouldn't do this (unless polyfilling old browsers) as this is modifying the native objects
 
-      Hint: To update a strings prototype use String.prototype.yourFunctionName = 
-    
-*/ 
+      Hint: To update a strings prototype use String.prototype.yourFunctionName =
+
+*/
+
+let string = "the little brown dog";
+
+String.prototype.capitalize = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+}
 
 test('Capitalise function', () => {
-    expect("the little brown dog".capitalize()).toBe("The little brown dog");
+    expect(string.capitalize()).toBe("The little brown dog");
 });
 
 /*
-    
+
     Task 2) Rewrite the following so that the toString function is not created each time a function is created
       Hint: Use prototypes
 
@@ -22,12 +28,16 @@ test('Capitalise function', () => {
 
 */
 
+String.prototype.toString = function (model, year, car) {
+    return model + " has done " + miles + " miles";
+};
+
 function Car( model, year, miles ) {
- 
+
   this.model = model;
   this.year = year;
   this.miles = miles;
- 
+
   this.toString = function () {
     return this.model + " has done " + this.miles + " miles";
   };
