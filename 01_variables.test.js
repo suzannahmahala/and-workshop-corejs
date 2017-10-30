@@ -29,13 +29,13 @@ test('LET', () => {
 });
 
 test('CONST - scalar values', () => {
-  const x = 5;
+  let x = 5;
   x = 'foo';
   expect(x).toBe(5);
 });
 
 test('CONST - assignment', () => {
-  const x;
+  const x = 5;
   x = 5
   expect(x).toBe(5);
 });
@@ -45,6 +45,6 @@ test('CONST - objects', () => {
     "name": "Linus",
     "age": 42
   };
-  
+
   expect(person.lastname).toBe('torvalds');
 });

@@ -87,11 +87,11 @@ let i = 'global';
 console.log(this.x); // "global"
 console.log(this.i); // undefined
 
-/* In ECMAScript 2015, let bindings are not subject to Variable Hoisting, which means that let declarations do not move 
-   to the top of the current execution context.  
-   Referencing the variable in the block before the initialization results in a ReferenceError (contrary to a variable declared with var, 
-   which will just have the undefined value). 
-   The variable is in a "temporal dead zone" from the start of the block until the initialization is processed. 
+/* In ECMAScript 2015, let bindings are not subject to Variable Hoisting, which means that let declarations do not move
+   to the top of the current execution context.
+   Referencing the variable in the block before the initialization results in a ReferenceError (contrary to a variable declared with var,
+   which will just have the undefined value).
+   The variable is in a "temporal dead zone" from the start of the block until the initialization is processed.
 */
 
 function varTest() {
@@ -118,18 +118,18 @@ function do_something() {
   console.log(bar); // undefined
   console.log(foo); // ReferenceError
   var bar = 1;
-  let foo = 2;
+  var foo = 2;
 }
 
 let j = 1;
 
 switch (j) {
   case 0:
-    let foo;
+    var foo;
     break;
 
   case 1:
-    let foo; // SyntaxError for redeclaration.
+    var foo; // SyntaxError for redeclaration.
     break;
 }
 
@@ -172,23 +172,23 @@ console.log(b); // 2
 const MY_FAV = 7;
 
 // this will throw an error - Uncaught TypeError: Assignment to constant variable.
-MY_FAV = 20;
+let MY_FAV6 = 20;
 
 // MY_FAV is 7
 console.log('my favorite number is: ' + MY_FAV);
 
 // trying to redeclare a constant throws an error -  Uncaught SyntaxError: Identifier 'MY_FAV' has already been declared
-const MY_FAV = 20;
+const MY_FAV2 = 20;
 
 // the name MY_FAV is reserved for constant above, so this will fail too
-var MY_FAV = 20;
+var MY_FAV3 = 20;
 
 // this throws an error too
-let MY_FAV = 20;
+let MY_FAV4 = 20;
 
 // it's important to note the nature of block scoping
-if (MY_FAV === 7) { 
-    // this is fine and creates a block scoped MY_FAV variable 
+if (MY_FAV === 7) {
+    // this is fine and creates a block scoped MY_FAV variable
     // (works equally well with let to declare a block scoped non const variable)
     let MY_FAV = 20;
 
@@ -196,14 +196,14 @@ if (MY_FAV === 7) {
     console.log('my favorite number is ' + MY_FAV);
 
     // this gets hoisted into the global context and throws an error
-    var MY_FAV = 20;
+    var MY_FAV5 = 20;
 }
 
 // MY_FAV is still 7
 console.log('my favorite number is ' + MY_FAV);
 
 // throws an error - Uncaught SyntaxError: Missing initializer in const declaration
-const FOO; 
+const FOO = "";
 
 // const also works on objects
 const MY_OBJECT = {'key': 'value'};
