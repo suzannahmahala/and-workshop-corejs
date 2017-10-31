@@ -38,19 +38,18 @@ function filter(candidates, filters) {
 
 
 
-  for (var i = candidates.length; i--;) {
-    hasOptions = candidates[i].options && candidates[i].options.length > 0; //has.options
+  candidates.forEach(function(candidate) {
+    hasOptions = candidate.options && candidate.options.length > 0; //has.options
 
-    if (candidates[i].options) {
+    if (candidate.options) {
       filters.forEach(function(filter){
         // loop through filters
         var hasFilter = false;
 
-
-        candidates[i].options.forEach(function(option){
+        candidate.options.forEach(function(option){
           let candidateSkills = filter.indexOf(option) !== -1
           if (!availableImmediatelyFilter && !freshGrad && candidateSkills) {
-              hasFilter = true;
+            hasFilter = true;
           } else if (
             availableImmediatelyFilter &&
             option === 'AVAILABLE_IMMEDIATELY'
@@ -60,16 +59,13 @@ function filter(candidates, filters) {
             hasFilter = true;
           }
         })
-
-
-
         hasOptions = hasOptions && hasFilter;
       })
     }
     if (hasOptions) {
-      filteredResults.unshift(candidates[i]);
+      filteredResults.push(candidate);
     }
-  }
+  })
 
   return filteredResults;
 }
