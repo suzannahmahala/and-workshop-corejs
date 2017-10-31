@@ -26,11 +26,15 @@ function filter(candidates, filters) {
     return candidates;
   }
 
-  if (filters.indexOf('AVAILABLE_IMMEDIATELY') !== -1) {
+
+
+  if (filters.includes('AVAILABLE_IMMEDIATELY')) {
     availableImmediately = true;
-  } else if (filters.indexOf('FRESH_GRAD') !== -1) {
+  } else if (filters.includes('FRESH_GRAD')) {
     freshGrad = true;
   }
+  
+
 
   for (var i = candidates.length; i--;) {
     hasOptions = candidates[i].options && candidates[i].options.length > 0; //has.options
