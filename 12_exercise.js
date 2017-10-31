@@ -17,52 +17,32 @@
  */
 
 function filter(candidates, filters) {
-  let hasOptions;
-  let availableImmediatelyFilter = false;
-  let freshGrad = false;
-
-  if (!filters.length) {
-    return candidates;
-  }
-
-
-
-  if (filters.includes('AVAILABLE_IMMEDIATELY')) {
-    availableImmediatelyFilter = true;
-  } else if (filters.includes('FRESH_GRAD')) {
-    freshGrad = true;
-  }
-
-
-
-
+  let availableImmediatelyFilter = filters.includes('AVAILABLE_IMMEDIATELY');
+  let freshGrad = !availableImmediatelyFilter && filters.includes('FRESH_GRAD');
 
   return candidates.filter(function(candidate) {
-    hasOptions = candidate.options && candidate.options.length > 0; //has.options
+    let hasOptions = candidate.options && candidate.options.length > 0; //has.options
 
-    if (candidate.options) {
+
       filters.forEach(function(filter) {
         // loop through filters
-        let hasFilter = false;
-
-        candidate.options.forEach(function(option) {
-          let candidateSkills = filter.indexOf(option) !== -1
+        let hasFilter = candidate.options.some(function(option) {
+          let candidateSkills = filter.includes(option)
           if (!availableImmediatelyFilter && !freshGrad && candidateSkills) {
-            hasFilter = true;
+            return true;
           } else if (availableImmediatelyFilter && option === 'AVAILABLE_IMMEDIATELY') {
-            hasFilter = true;
+            return true;
           } else if (freshGrad && option === 'FRESH_GRAD') {
-            hasFilter = true;
+            return true;
           }
         })
         hasOptions = hasOptions && hasFilter;
       })
-    }
+
     if (hasOptions) {
       return true;
     }
   })
-
 }
 
 module.exports = filter;
