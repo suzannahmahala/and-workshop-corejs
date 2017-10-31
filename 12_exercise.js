@@ -17,10 +17,8 @@
  */
 
 function filter(candidates, filters) {
-  const filteredResults = [];
   let hasOptions;
   let availableImmediatelyFilter = false;
-
   let freshGrad = false;
 
   if (!filters.length) {
@@ -38,22 +36,20 @@ function filter(candidates, filters) {
 
 
 
-  candidates.forEach(function(candidate) {
+
+  return candidates.filter(function(candidate) {
     hasOptions = candidate.options && candidate.options.length > 0; //has.options
 
     if (candidate.options) {
-      filters.forEach(function(filter){
+      filters.forEach(function(filter) {
         // loop through filters
-        var hasFilter = false;
+        let hasFilter = false;
 
-        candidate.options.forEach(function(option){
+        candidate.options.forEach(function(option) {
           let candidateSkills = filter.indexOf(option) !== -1
           if (!availableImmediatelyFilter && !freshGrad && candidateSkills) {
             hasFilter = true;
-          } else if (
-            availableImmediatelyFilter &&
-            option === 'AVAILABLE_IMMEDIATELY'
-          ) {
+          } else if (availableImmediatelyFilter && option === 'AVAILABLE_IMMEDIATELY') {
             hasFilter = true;
           } else if (freshGrad && option === 'FRESH_GRAD') {
             hasFilter = true;
@@ -63,11 +59,10 @@ function filter(candidates, filters) {
       })
     }
     if (hasOptions) {
-      filteredResults.push(candidate);
+      return true;
     }
   })
 
-  return filteredResults;
 }
 
 module.exports = filter;
