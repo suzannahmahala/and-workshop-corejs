@@ -16,14 +16,14 @@
  *   happy refactory :)
  */
 
-function filter(results, filters) {
+function filter(candidates, filters) {
   var filteredResults = [];
   var hasOptions;
   var availableImmediately = false;
   var freshGrad = false;
 
   if (!filters.length) {
-    return results;
+    return candidates;
   }
 
   if (filters.indexOf('AVAILABLE_IMMEDIATELY') !== -1) {
@@ -32,24 +32,24 @@ function filter(results, filters) {
     freshGrad = true;
   }
 
-  for (var i = results.length; i--;) {
-    hasOptions = results[i].options && results[i].options.length > 0; //has.options
+  for (var i = candidates.length; i--;) {
+    hasOptions = candidates[i].options && candidates[i].options.length > 0; //has.options
 
-    if (results[i].options) {
+    if (candidates[i].options) {
       for (var k = filters.length; k--;) {
         // loop through filters
         var hasFilter = false;
-        for (var j = results[i].options.length; j--;) {
+        for (var j = candidates[i].options.length; j--;) {
           if (!availableImmediately && !freshGrad) {
-            if (filters[k].indexOf(results[i].options[j]) !== -1) {
+            if (filters[k].indexOf(candidates[i].options[j]) !== -1) {
               hasFilter = true;
             }
           } else if (
             availableImmediately &&
-            results[i].options[j] === 'AVAILABLE_IMMEDIATELY'
+            candidates[i].options[j] === 'AVAILABLE_IMMEDIATELY'
           ) {
             hasFilter = true;
-          } else if (freshGrad && results[i].options[j] === 'FRESH_GRAD') {
+          } else if (freshGrad && candidates[i].options[j] === 'FRESH_GRAD') {
             hasFilter = true;
           }
         }
@@ -57,7 +57,7 @@ function filter(results, filters) {
       }
     }
     if (hasOptions) {
-      filteredResults.unshift(results[i]);
+      filteredResults.unshift(candidates[i]);
     }
   }
 
