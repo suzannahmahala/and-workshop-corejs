@@ -42,13 +42,13 @@ function filter(candidates, filters) {
     hasOptions = candidates[i].options && candidates[i].options.length > 0; //has.options
 
     if (candidates[i].options) {
-      for (var k = filters.length; k--;) {
+      filters.forEach(function(filter){
         // loop through filters
         var hasFilter = false;
 
 
         candidates[i].options.forEach(function(option){
-          let candidateSkills = filters[k].indexOf(option) !== -1
+          let candidateSkills = filter.indexOf(option) !== -1
           if (!availableImmediatelyFilter && !freshGrad && candidateSkills) {
               hasFilter = true;
           } else if (
@@ -64,7 +64,7 @@ function filter(candidates, filters) {
 
 
         hasOptions = hasOptions && hasFilter;
-      }
+      })
     }
     if (hasOptions) {
       filteredResults.unshift(candidates[i]);
