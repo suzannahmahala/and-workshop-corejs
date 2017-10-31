@@ -18,8 +18,6 @@
 
 function filter(results, filters) {
   var filteredResults = [];
-  var resultsLength = results.length;
-  var filterLength = filters.length;
   var hasOptions;
   var availableImmediately = false;
   var freshGrad = false;
@@ -34,11 +32,11 @@ function filter(results, filters) {
     freshGrad = true;
   }
 
-  for (var i = resultsLength; i--;) {
+  for (var i = results.length; i--;) {
     hasOptions = results[i].options && results[i].options.length > 0; //has.options
 
     if (results[i].options) {
-      for (var k = filterLength; k--;) {
+      for (var k = filters.length; k--;) {
         // loop through filters
         var hasFilter = false;
         for (var j = results[i].options.length; j--;) {
