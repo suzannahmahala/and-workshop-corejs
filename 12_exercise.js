@@ -47,20 +47,19 @@ function filter(candidates, filters) {
         var hasFilter = false;
 
 
-        for (var j = candidates[i].options.length; j--;) {
-
-          let candidateSkills = filters[k].indexOf(candidates[i].options[j]) !== -1
+        candidates[i].options.forEach(function(option){
+          let candidateSkills = filters[k].indexOf(option) !== -1
           if (!availableImmediatelyFilter && !freshGrad && candidateSkills) {
               hasFilter = true;
           } else if (
             availableImmediatelyFilter &&
-            candidates[i].options[j] === 'AVAILABLE_IMMEDIATELY'
+            option === 'AVAILABLE_IMMEDIATELY'
           ) {
             hasFilter = true;
-          } else if (freshGrad && candidates[i].options[j] === 'FRESH_GRAD') {
+          } else if (freshGrad && option === 'FRESH_GRAD') {
             hasFilter = true;
           }
-        }
+        })
 
 
 
