@@ -21,10 +21,7 @@ function filter(candidates, filters) {
   let freshGrad = !availableImmediatelyFilter && filters.includes('FRESH_GRAD');
 
   return candidates.filter(function(candidate) {
-    let hasOptions = candidate.options && candidate.options.length > 0; //has.options
-
-
-      filters.forEach(function(filter) {
+      return filters.every(function(filter) {
         // loop through filters
         let hasFilter = candidate.options.some(function(option) {
           let candidateSkills = filter.includes(option)
@@ -36,12 +33,8 @@ function filter(candidates, filters) {
             return true;
           }
         })
-        hasOptions = hasOptions && hasFilter;
+        return hasFilter;
       })
-
-    if (hasOptions) {
-      return true;
-    }
   })
 }
 
