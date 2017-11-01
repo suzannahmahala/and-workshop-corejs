@@ -17,14 +17,14 @@
  */
 
 function filter(candidates, filters) {
-  let availableImmediatelyFilter = filters.includes('AVAILABLE_IMMEDIATELY');
-  let freshGrad = !availableImmediatelyFilter && filters.includes('FRESH_GRAD');
+  const availableImmediatelyFilter = filters.includes('AVAILABLE_IMMEDIATELY');
+  const freshGrad = !availableImmediatelyFilter && filters.includes('FRESH_GRAD');
 
   return candidates.filter(function(candidate) {
       return filters.every(function(filter) {
         // loop through filters
-        let hasFilter = candidate.options.some(function(option) {
-          let candidateSkills = filter.includes(option)
+        return candidate.options.some(function(option) {
+          const candidateSkills = filter.includes(option)
           if (!availableImmediatelyFilter && !freshGrad && candidateSkills) {
             return true;
           } else if (availableImmediatelyFilter && option === 'AVAILABLE_IMMEDIATELY') {
@@ -33,7 +33,6 @@ function filter(candidates, filters) {
             return true;
           }
         })
-        return hasFilter;
       })
   })
 }
